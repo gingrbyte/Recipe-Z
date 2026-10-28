@@ -1,31 +1,65 @@
+
 <?php
 
-require "../config.php";
-require "./views/admin_view.php";
+require __DIR__ . "/../config.php";
 
-echo $_SERVER['SERVER_NAME'];
+$search = trim($_GET["search"]);
 
-$email = "jo</></>hn.doe@example.com";
+// Handle recipe deletion
+if ($_SERVER["REQUEST_METHOD"] === "POST"
+    && isset($_POST["delete"])) {
 
-// Remove illegal characters from email
+    $recipe_id = filter_input(
+        INPUT_POST,
+        "recipe_id",
+        FILTER_VALIDATE_INT
+    );
 
+    if ($recipe_id !== false && $recipe_id !== null
+        && $recipe_id > 0) {
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $stmt = $pdo->prepare(
+            "DELETE FROM recipes WHERE recipe_id = :recipe_id"
+        );
 
-    $email = $_POST['email'];
-    $email_clean = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $stmt->execute([
+            "recipe_id" => $recipe_id
+        ]);
+    }
 
+    // Return to the current search or show all recipes
+    $redirect = "admin.php";
+
+    if ($search !== "") {
+        $redirect .= "?search=" . urlencode($search);
+    }
+
+    header("Location: " . $redirect);
+    exit;
 }
 
+// Fetch all recipes, or filter by keyword
+if ($search !== "") {
+    $sql = "SELECT * FROM recipes
+            WHERE title LIKE :title
+               OR ingredients LIKE :ingredients
+               OR author LIKE :author
+            ORDER BY recipe_id DESC";
 
+    $stmt = $pdo->prepare($sql);
+    $keyword = "%" . $search . "%";
 
-//// Validate email
-//if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-//    echo("$email is a valid email address");
-//} else {
-//    echo("$email is not a valid email address");
-//}
+    $stmt->execute([
+        "title" => $keyword,
+        "ingredients" => $keyword,
+        "author" => $keyword
+    ]);
+} else {
+    $stmt = $pdo->query(
+        "SELECT * FROM recipes ORDER BY recipe_id DESC"
+    );
+}
 
+$recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-
+require __DIR__ . "/../src/php/views/admin-view.php";
