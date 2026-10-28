@@ -1,0 +1,150 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #222;
+    font-family: Arial, sans-serif;
+}
+
+.pagina {
+    width: 95%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: white;
+}
+
+
+
+
+.top {
+    height: 70px;
+    border-bottom: 1px solid #aaa;
+}
+
+.checkboxes {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.checkboxes input {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+.heb {
+    display: flex;
+    gap: 30px;
+    width: 85%;
+    margin: 35px auto;
+}
+
+.ingredients {
+    flex: 1;
+    border-right: 1px solid #aaa;
+}
+
+.titel {
+    flex: 1.5;
+    text-align: center;
+}
+
+.instructions {
+    flex: 1;
+}
+
+.titel h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.titel p {
+    font-size: 10px;
+}
+
+.piza {
+    width: 80%;
+    height: 110px;
+    margin: auto;
+    border: 1px solid #888;
+}
+
+.pijn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+}
+
+h3 {
+    font-size: 13px;
+}
+
+li {
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+
+.kards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 85%;
+    margin: auto;
+    border-top: 1px solid #aaa;
+    padding-top: 25px;
+}
+
+.kard {
+    width: 30%;
+    height: 105px;
+    margin-bottom: 30px;
+    border: 1px solid #999;
+}
+
+
+
+@media (max-width: 600px) {
+
+    body {
+        background: white;
+    }
+
+    .pagina {
+        width: 100%;
+        margin: 0;
+    }
+
+    .intro {
+        flex-direction: column;
+    }
+
+    .ingredients {
+        border-right: none;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 15px;
+    }
+
+    .titel,
+    .instructions {
+        width: 100%;
+    }
+
+    .card {
+        width: 47%;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .card {
+        width: 100%;
+    }
+}
