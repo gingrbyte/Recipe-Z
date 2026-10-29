@@ -15,16 +15,19 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <header>
-    <h1>Recipe Z</h1>
+    <a href="/Recipe-Z/Kaan/home.php"><h1>Recipe Z</h1></a>
     <nav>
         <a href="overzicht.php">Overzicht</a>
+        <a href="/Recipe-Z/Senna/search.php">Zoeken</a>
         <?php if (!empty($_SESSION['user_id'])): ?>
             <a href="invoer.php">Recept toevoegen</a>
             <a href="logout.php">Uitloggen</a>
+            <a href="/Recipe-Z/Senna/admin.php">Admin</a>
         <?php else: ?>
             <a href="login.php">Login</a>
             <a href="register.php">Registreren</a>
         <?php endif; ?>
+        <a href="/Recipe-Z/Kaan/home.php">Home</a>
     </nav>
 </header>
 

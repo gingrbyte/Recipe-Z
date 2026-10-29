@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <header>
-    <h1>Recipe Z</h1>
+    <a href="/Recipe-Z/Kaan/home.php"><h1>Recipe Z</h1></a>
 </header>
 
 <main class="login-box">
