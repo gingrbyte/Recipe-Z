@@ -29,9 +29,9 @@
             <img src="images/logo.svg" alt="Recipe Z" class="logo">
         </a>
         <nav>
-            <a href="search.php"><img src="images/search.svg" alt="Zoeken"></a>
-            <a href="#"><img src="images/group.svg" alt="Groep"></a>
-            <a href="profile.php"><img src="images/profile.svg" alt="Profiel"></a>
+            <a href="/Recipe-Z/Senna/search.php""><img src="images/search.svg" alt="Zoeken"></a>
+            <a href="/Recipe-Z/Raman/overzicht.php"><img src="images/group.svg" alt="Overzicht"></a>
+            <a href="/Recipe-Z/Senna/admin.php"><img src="images/profile.svg" alt="Profiel"></a>
         </nav>
     </div>
 </header>

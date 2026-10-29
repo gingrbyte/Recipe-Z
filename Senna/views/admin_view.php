@@ -10,6 +10,13 @@
 <body>
 
 <header>
+    <a href="search.php"> <!-- logo-->
+        <img
+                src="../assets/img/logo/Recipe%20Z.png"
+                alt="Recipe Z"
+                width="100"
+        >
+    </a>
     <svg class="header-bg" viewBox="0 0 1512 193" xmlns="http://www.w3.org/2000/svg">
         <path d="M0.5 191.714
             C0.739403 191.603 1.03838 191.465 1.39844 191.303
@@ -23,15 +30,7 @@
               fill="#58355E" stroke-width="4"/>
     </svg>
     <nav>
-        <a href="search.php">
-            <img
-                    src="../assets/img/logo/Recipe%20Z.png"
-                    alt="Recipe Z"
-                    width="100"
-            >
-        </a>
-
-        <a href="/Recipe-Z/Senna/search.php">Recipe Z</a>
+        <a href="/Recipe-Z/Senna/search.php">Zoeken</a>
         <a href="/Recipe-Z/Senna/admin.php">Admin</a>
         <a href="/Recipe-Z/Raman/overzicht.php">Overzicht</a>
         <a href="/Recipe-Z/Kaan/home.php">Home</a>
