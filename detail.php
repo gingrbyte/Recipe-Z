@@ -75,7 +75,7 @@
     </section>
 
 
-
+w
     <section class="kards">
         <div class="kard"></div>
         <div class="kard"></div>
