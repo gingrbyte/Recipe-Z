@@ -58,21 +58,21 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="header-content">
 
         <a href="home.php">
-            <img src="images/logo.svg" alt="Recipe Z" class="logo">
+            <img src="/Recipe-Z/assets/img/logo/Recipe Z.png" alt="Recipe Z" class="logo">
         </a>
 
         <nav>
 
             <a href="/Recipe-Z/Senna/search.php">
-                <img src="images/search.svg" alt="Zoeken">
+                <img src="/Recipe-Z/assets/img/logo/search_logo.jpg" alt="Zoeken" class="search">
             </a>
 
             <a href="/Recipe-Z/Raman/overzicht.php">
-                <img src="images/group.svg" alt="Overzicht">
+                <img src="/Recipe-Z/assets/img/logo/overzicht.jpg" alt="Overzicht" class="search">
             </a>
 
             <a href="/Recipe-Z/Senna/admin.php">
-                <img src="images/profile.svg" alt="Profiel">
+                <img src="/Recipe-Z/assets/img/logo/profiel.jpg" alt="Profiel" class="search">
             </a>
 
         </nav>

@@ -33,7 +33,12 @@ header {
 }
 
 .logo {
-    width: 160px;
+    width: 100px;
+}
+
+.search{
+    width: 40px;
+    height: 40px;
 }
 
 nav {
@@ -62,32 +67,7 @@ main {
 }
 
 
-.main-search-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto 60px;
-}
 
-.main-search-input {
-    width: 100%;
-    padding: 15px 50px 15px 25px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-    color: #666;
-    outline: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.main-search-icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
-}
 
 
 .recipe-grid {
