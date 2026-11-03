@@ -1,3 +1,26 @@
+<?php
+
+
+$sql = "
+SELECT
+r.recipe_id,
+r.title,
+r.meal_type,
+r.servings,
+r.images,
+u.username,
+(
+SELECT GROUP_CONCAT(i.name, ', ')
+FROM ingredients i
+WHERE i.recipe_id = r.recipe_id
+) AS ingredient_names
+FROM recipes r
+LEFT JOIN users u ON r.user_id = u.user_id
+";
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
