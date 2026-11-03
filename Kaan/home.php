@@ -1,16 +1,46 @@
+<?php
+
+require_once __DIR__ . "/../config.php";
+$sql = "
+SELECT
+    r.recipe_id,
+    r.title,
+    r.meal_type,
+    r.servings,
+    r.images,
+    u.username,
+    (
+        SELECT GROUP_CONCAT(i.name, ', ')
+        FROM ingredients i
+        WHERE i.recipe_id = r.recipe_id
+    ) AS ingredient_names
+FROM recipes r
+LEFT JOIN users u ON r.user_id = u.user_id
+";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+$recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Recipe Z - Home</title>
 
     <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
 
-
 <header>
+
     <svg class="header-bg" viewBox="0 0 1512 193" xmlns="http://www.w3.org/2000/svg">
         <path d="M0.5 191.714
             C0.739403 191.603 1.03838 191.465 1.39844 191.303
@@ -21,100 +51,108 @@
             C787.46 126 1160.03 119.285 1341.02 126.001
             C1439.06 129.639 1488.15 113.868 1511 92.4941
             V0.5 L0.5 0.5 L0.5 191.714Z"
-              fill="#58355E" stroke-width="4"/>
+              fill="#58355E"
+              stroke-width="4"/>
     </svg>
 
     <div class="header-content">
+
         <a href="home.php">
             <img src="images/logo.svg" alt="Recipe Z" class="logo">
         </a>
+
         <nav>
-            <a href="/Recipe-Z/Senna/search.php""><img src="images/search.svg" alt="Zoeken"></a>
-            <a href="/Recipe-Z/Raman/overzicht.php"><img src="images/group.svg" alt="Overzicht"></a>
-            <a href="/Recipe-Z/Senna/admin.php"><img src="images/profile.svg" alt="Profiel"></a>
+
+            <a href="/Recipe-Z/Senna/search.php">
+                <img src="images/search.svg" alt="Zoeken">
+            </a>
+
+            <a href="/Recipe-Z/Raman/overzicht.php">
+                <img src="images/group.svg" alt="Overzicht">
+            </a>
+
+            <a href="/Recipe-Z/Senna/admin.php">
+                <img src="images/profile.svg" alt="Profiel">
+            </a>
+
         </nav>
+
     </div>
+
 </header>
 
 
 <main>
 
-    <section class="main-search-container">
-        <input type="text" placeholder="What are we craving...?" class="main-search-input">
-        <img src="images/search.svg" alt="Zoeken" class="main-search-icon">
-    </section>
-
-
     <section class="recipe-grid">
 
-        <article class="recipe-container">
-            <h3 class="recipe-title">Pasta Carbonara</h3>
-            <div class="recipe-card">
-                <img src="images/carbonara.jpg" alt="Pasta Carbonara" class="recipe-image">
-                <div class="recipe-footer">
-                    <span class="recipe-author">@SennaBytes</span>
-                    <div class="recipe-icons">
-                        <img src="images/icon-pot.svg" alt="Pot">
-                        <img src="images/icon-people.svg" alt="Personen">
-                        <span>4</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+        <?php if (!empty($recipes)): ?>
 
-        <article class="recipe-container">
-            <h3 class="recipe-title">Pasta Bolognese</h3>
-            <div class="recipe-card">
-                <img src="images/bolognese.jpg" alt="Pasta Bolognese" class="recipe-image">
-                <div class="recipe-footer">
-                    <span class="recipe-author">@BaasGLR</span>
-                    <div class="recipe-icons">
-                        <img src="images/icon-timer.svg" alt="Tijd">
-                        <img src="images/icon-pot.svg" alt="Pot">
-                        <img src="images/icon-people.svg" alt="Personen">
-                        <span>4</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+            <?php foreach ($recipes as $recipe): ?>
 
-        <article class="recipe-container">
-            <h3 class="recipe-title">Pasta Pesto</h3>
-            <div class="recipe-card">
-                <img src="images/pesto.jpg" alt="Pasta Pesto" class="recipe-image">
-                <div class="recipe-footer">
-                    <span class="recipe-author">@SennaBytes</span>
-                    <div class="recipe-icons">
-                        <img src="images/icon-pot.svg" alt="Pot">
-                        <img src="images/icon-people.svg" alt="Personen">
-                        <span>4</span>
-                    </div>
-                </div>
-            </div>
-        </article>
+                <article class="recipe-container">
 
-        <article class="recipe-container">
-            <h3 class="recipe-title">Pasta Carbonara</h3>
-            <div class="recipe-card">
-                <img src="images/carbonara2.jpg" alt="Pasta Carbonara" class="recipe-image">
-                <div class="recipe-footer">
-                    <span class="recipe-author">@SennaBytes</span>
-                    <div class="recipe-icons">
-                        <img src="images/icon-pot.svg" alt="Pot">
-                        <img src="images/icon-people.svg" alt="Personen">
-                        <span>4</span>
+                    <h3 class="recipe-title">
+                        <?= htmlspecialchars($recipe['title']) ?>
+                    </h3>
+
+                    <div class="recipe-card">
+
+                        <img
+                                src="images/<?= htmlspecialchars($recipe['images'] ?? '') ?>"
+                                alt="<?= htmlspecialchars($recipe['title']) ?>"
+                                class="recipe-image"
+                        >
+
+                        <div class="recipe-footer">
+
+                            <span class="recipe-author">
+                                @<?= htmlspecialchars($recipe['username'] ?? 'Onbekend') ?>
+                            </span>
+
+                            <div class="recipe-icons">
+
+                                <img
+                                        src="images/icon-pot.svg"
+                                        alt="Maaltijd"
+                                >
+
+                                <img
+                                        src="images/icon-people.svg"
+                                        alt="Personen"
+                                >
+
+                                <span>
+                                    <?= htmlspecialchars((string) $recipe['servings']) ?>
+                                </span>
+
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
-            </div>
-        </article>
+
+                </article>
+
+            <?php endforeach; ?>
+
+        <?php else: ?>
+
+            <p>Er zijn nog geen recepten beschikbaar.</p>
+
+        <?php endif; ?>
 
     </section>
+
 </main>
 
 
 <footer>
 
-    <p>&copy; <?php echo date("Y"); ?> Recipe Z. Alle rechten voorbehouden.</p>
+    <p>
+        &copy; <?= date("Y"); ?> Recipe Z. Alle rechten voorbehouden.
+    </p>
+
 </footer>
 
 </body>
