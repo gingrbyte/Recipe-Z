@@ -98,6 +98,7 @@ $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="recipe-card">
 
+
                         <img
                                 src="images/<?= htmlspecialchars($recipe['images'] ?? '') ?>"
                                 alt="<?= htmlspecialchars($recipe['title']) ?>"

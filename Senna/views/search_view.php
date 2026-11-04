@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,15 +10,15 @@
 
 <header>
 
-        <a href="search.php"> <!-- logo-->
-            <img
-                    src="../assets/img/logo/Recipe%20Z.png"
-                    alt="Recipe Z"
-                    width="100"
-            >
-        </a>
-        <svg class="header-bg" viewBox="0 0 1512 193" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.5 191.714
+    <a href="search.php"> <!-- logo-->
+        <img
+                src="../assets/img/logo/Recipe%20Z.png"
+                alt="Recipe Z"
+                width="100"
+        >
+    </a>
+    <svg class="header-bg" viewBox="0 0 1512 193" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.5 191.714
             C0.739403 191.603 1.03838 191.465 1.39844 191.303
             C2.47553 190.817 4.09421 190.106 6.26465 189.202
             C10.6055 187.394 17.154 184.813 25.9912 181.716
@@ -28,9 +27,9 @@
             C787.46 126 1160.03 119.285 1341.02 126.001
             C1439.06 129.639 1488.15 113.868 1511 92.4941
             V0.5 L0.5 0.5 L0.5 191.714Z"
-                  fill="#58355E" stroke-width="4"/>
-        </svg>
-        <nav>
+              fill="#58355E" stroke-width="4"/>
+    </svg>
+    <nav>
         <a href="/Recipe-Z/Senna/search.php">Zoeken</a>
         <a href="/Recipe-Z/Senna/admin.php">Admin</a>
         <a href="/Recipe-Z/Raman/overzicht.php">Overzicht</a>
@@ -66,7 +65,9 @@
         <?php foreach ($recipes as $recipe): ?>
             <article>
                 <h3>
-                    <?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?>
+                    <a href="/Recipe-Z/Kaan/detail.php?id=<?php echo $recipe['recipe_id']; ?>">
+                        <?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?>
+                    </a>
                 </h3>
 
                 <p>
@@ -102,11 +103,13 @@
                 </p>
 
                 <?php if (!empty($recipe['images'])): ?>
-                    <img
-                            src="data:image/jpeg;base64,<?php echo base64_encode($recipe['images']); ?>"
-                            alt="<?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?>"
-                            width="200"
-                    >
+                    <a href="/Recipe-Z/Kaan/detail.php?id=<?php echo $recipe['recipe_id']; ?>">
+                        <img
+                                src="data:image/jpeg;base64,<?php echo base64_encode($recipe['images']); ?>"
+                                alt="<?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?>"
+                                width="200"
+                        >
+                    </a>
                 <?php endif; ?>
             </article>
 
