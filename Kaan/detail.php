@@ -58,11 +58,11 @@ $others = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div class="top">
-    <a href="index.php" class="button"></a>
-    <a href="#" class="button"></a>
-    <a href="#" class="button"></a>
-    <a href="#" class="button"></a>
-    <a href="#" class="button"></a>
+    <a href="/Recipe-Z/Senna/search.php" class="button"></a>
+    <a href="home.php" class="button"></a>
+    <a href="/Recipe-Z/Raman/overzicht.php" class="button"></a>
+    <a href="/Recipe-Z/Senna/admin.php" class="button"></a>
+
 </div>
 
 <div class="main">
@@ -120,6 +120,6 @@ $others = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </a>
     <?php } ?>
 </div>
-
 </body>
 </html>
+
